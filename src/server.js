@@ -1,19 +1,22 @@
-require('dotenv').config()
+require('dotenv').config();
 
-const express = require('express')
-const app = express()
-const configViewEngine = require('./config/viewEngine')
-const port = process.env.PORT || 3000
-const webRoutes = require('./routes/web')
-const connection = require('./config/database')
+const express = require('express');
+const app = express();
+const configViewEngine = require('./config/viewEngine');
+const port = process.env.PORT || 3000;
+const webRoutes = require('./routes/web');
+const connection = require('./config/database');
+
+//config res.body
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 //config template engine
-configViewEngine(app)
+configViewEngine(app);
 
 //Routes
-app.use('/',webRoutes)
-
+app.use('/', webRoutes);
 
 app.listen(port, () => {
-  console.log(`Example app listening on port http://localhost:${port}`)
-})
+   console.log(`Example app listening on port http://localhost:${port}`);
+});
