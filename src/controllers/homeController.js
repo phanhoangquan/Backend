@@ -10,8 +10,19 @@ const getAbcPage = (req, res) => {
 };
 
 const createUser = (req, res) => {
-   console.log('Request Body:', req.body);
-   res.send('Create new user');
+   let email = req.body.email;
+   let name = req.body.name;
+   let city = req.body.city;
+
+   connection.query(
+      `INSERT INTO User (email,name,city)
+         VALUES (?, ?, ?)`,
+      [email, name, city],
+      (err, results) => {
+         console.log(results);
+         res.send('User created successfully!');
+      },
+   );
 };
 
 module.exports = {
