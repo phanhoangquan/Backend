@@ -1,6 +1,6 @@
 require('dotenv').config();
 const connection = require('../config/database');
-const { getAllUsers, createNewUser, getUserById } = require('../services/CRUDservices');
+const { getAllUsers, createNewUser, getUserById, updateForUser } = require('../services/CRUDservices');
 
 const getHomePage = async (req, res) => {
    let results = await getAllUsers();
@@ -21,6 +21,16 @@ const updatePage = async (req, res) => {
    res.render('update.ejs', { User: result });
 };
 
+const updateUser = async (req, res) => {
+   let email = req.body.email;
+   let name = req.body.name;
+   let city = req.body.city;
+   let userId = req.body.userId;
+   console.log('>>>check data from client: ', req.body);
+   await updateForUser(email, name, city, userId);
+   res.redirect('/');
+};
+
 const createUser = async (req, res) => {
    let email = req.body.email;
    let name = req.body.name;
@@ -35,4 +45,5 @@ module.exports = {
    createUser,
    createPage,
    updatePage,
+   updateUser,
 };
