@@ -1,6 +1,12 @@
 require('dotenv').config();
 const connection = require('../config/database');
-const { getAllUsers, createNewUser, getUserById, updateForUser } = require('../services/CRUDservices');
+const {
+   getAllUsers,
+   createNewUser,
+   getUserById,
+   updateForUser,
+   serviceDeleteUser,
+} = require('../services/CRUDservices');
 
 const getHomePage = async (req, res) => {
    let results = await getAllUsers();
@@ -44,7 +50,10 @@ const deleteUser = async (req, res) => {
    res.render('delete.ejs', { User: result });
 };
 
-const handleDeleteUser = async (req, res) => {};
+const handleDeleteUser = async (req, res) => {
+   await serviceDeleteUser(req.body.userId);
+   res.redirect('/');
+};
 
 module.exports = {
    getHomePage,
@@ -54,4 +63,5 @@ module.exports = {
    updatePage,
    updateUser,
    deleteUser,
+   handleDeleteUser,
 };

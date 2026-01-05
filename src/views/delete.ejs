@@ -15,10 +15,13 @@
          <form action="/delete-user" method="POST">
             <fieldset>
                <legend>DELETE USER</legend>
+               <div class="input-group d-none">
+                  <label for="userId">Id:</label>
+                  <input id="userId" name="userId" type="text" value="<%= User[0].id %>" />
+               </div>
                <div class="input-group">
                   <label for="email">ARE YOU SURE TO DELETE</label>
                   <input id="email" name="email" type="text" value="<%= User[0].email %>" />
-
                <div>
                   <button>CONFIRM</button>
                   <button>NO</button>
