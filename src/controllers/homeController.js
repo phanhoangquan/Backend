@@ -1,10 +1,9 @@
 require('dotenv').config();
 const connection = require('../config/database');
-const { getAllUsers } = require('../services/CRUDservices');
+const { getAllUsers, createNewUser, getUserById } = require('../services/CRUDservices');
 
 const getHomePage = async (req, res) => {
    let results = await getAllUsers();
-   console.log(results);
    res.render('home.ejs', { ListUsers: results });
 };
 
@@ -16,22 +15,17 @@ const createPage = (req, res) => {
    res.render('create.ejs');
 };
 
-const updatePage = (req, res) => {
-   const UserId = req.params.id;
-   console.log('UserId:', UserId);
-   res.render('update.ejs');
+const updatePage = async (req, res) => {
+   let result = await getUserById(req.params.id);
+   result = result && result.length > 0 ? result : {};
+   res.render('update.ejs', { User: result });
 };
 
 const createUser = async (req, res) => {
    let email = req.body.email;
    let name = req.body.name;
    let city = req.body.city;
-
-   let [results, fields] = await connection.query(
-      `INSERT INTO User (email,name,city)
-         VALUES (?, ?, ?)`,
-      [email, name, city],
-   );
+   await createNewUser(email, name, city);
    res.send('User created successfully!');
 };
 
