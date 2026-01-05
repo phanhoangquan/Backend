@@ -16,6 +16,10 @@ const createPage = (req, res) => {
    res.render('create.ejs');
 };
 
+const updatePage = (req, res) => {
+   res.render('update.ejs');
+};
+
 const createUser = async (req, res) => {
    let email = req.body.email;
    let name = req.body.name;
@@ -34,4 +38,5 @@ module.exports = {
    getAbcPage,
    createUser,
    createPage,
+   updatePage,
 };

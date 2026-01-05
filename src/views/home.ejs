@@ -14,10 +14,6 @@
          padding: 8px;
       }
 
-      tr:nth-child(even) {
-         background-color: #dddddd;
-      }
-
       .title {
          margin-bottom: 10px;
          font-size: 20px;
@@ -69,7 +65,7 @@
                <td><%= user.email %></td>
                <td><%= user.city %></td>
                <td>
-                  <button>Edit</button>
+                  <a href="/update">Edit</a>
                   <button>Delete</button>
                </td>
             </tr>
