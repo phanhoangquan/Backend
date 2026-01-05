@@ -1,8 +1,11 @@
 require('dotenv').config();
 const connection = require('../config/database');
+const { getAllUsers } = require('../services/CRUDservices');
 
-const getHomePage = (req, res) => {
-   res.render('home.ejs');
+const getHomePage = async (req, res) => {
+   let results = await getAllUsers();
+   console.log(results);
+   res.render('home.ejs', { ListUsers: results });
 };
 
 const getAbcPage = (req, res) => {
