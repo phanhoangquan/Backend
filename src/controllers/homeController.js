@@ -17,6 +17,8 @@ const createPage = (req, res) => {
 };
 
 const updatePage = (req, res) => {
+   const UserId = req.params.id;
+   console.log('UserId:', UserId);
    res.render('update.ejs');
 };
 

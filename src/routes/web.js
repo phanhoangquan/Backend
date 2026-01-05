@@ -6,7 +6,7 @@ const { getHomePage, getAbcPage, createUser, createPage, updatePage } = require(
 router.get('/', getHomePage);
 router.get('/abc', getAbcPage);
 router.get('/create', createPage);
-router.get('/update', updatePage);
+router.get('/update/:id', updatePage);
 router.post('/create-user', createUser);
 
 module.exports = router;
