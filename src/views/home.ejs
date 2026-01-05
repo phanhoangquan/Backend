@@ -22,6 +22,11 @@
       .table-container {
          padding: 20px;
       }
+
+      .container {
+         display: flex;
+         align-items: center;
+      }
    </style>
    <head>
       <meta charset="UTF-8" />
@@ -65,8 +70,12 @@
                <td><%= user.email %></td>
                <td><%= user.city %></td>
                <td>
-                  <a href="/update/<%= user.id %>">Edit</a>
-                  <button>Delete</button>
+                  <div class="container">
+                     <a href="/update/<%= user.id %>">Edit</a>
+                     <form action="/delete-user/<%= user.id %>" method="POST">
+                        <button>Delete</button>
+                     </form>
+                  </div>
                </td>
             </tr>
             <%}); %>

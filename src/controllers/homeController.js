@@ -39,6 +39,13 @@ const createUser = async (req, res) => {
    res.send('User created successfully!');
 };
 
+const deleteUser = async (req, res) => {
+   let result = await getUserById(req.params.id);
+   res.render('delete.ejs', { User: result });
+};
+
+const handleDeleteUser = async (req, res) => {};
+
 module.exports = {
    getHomePage,
    getAbcPage,
@@ -46,4 +53,5 @@ module.exports = {
    createPage,
    updatePage,
    updateUser,
+   deleteUser,
 };
